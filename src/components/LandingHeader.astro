@@ -3,6 +3,7 @@ import Logo from './Logo.astro'
 ---
 
 <header
+  id='landing-header'
   class='py-3 px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white'
 >
   <!-- Logo -->
@@ -13,7 +14,7 @@ import Logo from './Logo.astro'
   <!-- Nav -->
   <nav>
     <ul
-      class='flex text-sm [&>li>a]:text-white [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2'
+      class='flex text-sm [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2'
     >
       <li><a href='#model'>Model S</a></li>
       <li><a href='#model-3'>Model 3</a></li>
@@ -27,7 +28,7 @@ import Logo from './Logo.astro'
   <!-- Menú -->
   <nav class='flex flex-grow justify-end basis-0'>
     <ul
-      class='flex text-sm [&>li>a]:text-white [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2'
+      class='flex text-sm [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2'
     >
       <li><a href='#'>Soporte</a></li>
       <li><a href='#'>Tienda</a></li>
@@ -36,3 +37,26 @@ import Logo from './Logo.astro'
     </ul>
   </nav>
 </header>
+
+<script>
+  const $headerElem = document.querySelector('#landing-header') as HTMLElement
+
+  const observerOptions = {
+    root: null, // Para el viewport o para un elemento en concreto
+    rootMargin: '0px', // en cuando se vea el elemento
+    threshold: 0.9 // porcentaje de visibilidad
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const { isIntersecting } = entry
+      if (isIntersecting) {
+        const color = entry.target.getAttribute('data-header-color')
+        $headerElem.style.color = color
+      }
+    })
+  }, observerOptions)
+
+  const $sectionElements = document.querySelectorAll('.landing-section')
+  $sectionElements.forEach((section) => observer.observe(section))
+</script>
