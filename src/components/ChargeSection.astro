@@ -1,37 +1,32 @@
-<section
-  class='landing-section relative h-screen w-full overflow-hidden text-center bg-black'
-  data-header-color='black'
+---
+import Section from './Section.astro'
+---
+
+<Section
+  title='Model Y'
+  subtitle='Concertar una prueba de condución'
+  color='black'
+  sectionId='model-y'
 >
-  <div class='relative z-30 flex flex-col h-full'>
-    <header>
-      <h2 class='pt-40 text-[40px] font-medium text-black'>Model Y</h2>
-      <p class='text-sm text-black underline'>
-        Concertar una prueba de condución
-      </p>
-    </header>
-
-    <!-- Buttons -->
-    <footer class='flex flex-col flex-grow justify-end pb-20'>
-      <div class='flex mx-auto gap-x-6'>
-        <a
-          class='inline-block px-12 py-2 border-[3px] rounded text-sm font-medium bg-gray-600 border-gray-600 text-white hover:bg-gray-500 hover:border-gray-500 transition-colors'
-          href='#'
-          >Explorar inventario
-        </a>
-        <a
-          class='inline-flex justify-center items-center px-12 py-2 rounded text-sm font-medium text-black bg-white hover:bg-black hover:text-white transition-colors'
-          href='#'
-          >Pedido personalisado
-        </a>
-      </div>
-    </footer>
+  <!-- Buttons -->
+  <div slot='footer-button' class='flex mx-auto gap-x-6'>
+    <a
+      class='inline-block px-12 py-2 border-[3px] rounded text-sm font-medium bg-gray-600 border-gray-600 text-white hover:bg-gray-500 hover:border-gray-500 transition-colors'
+      href='#'
+      >Explorar inventario
+    </a>
+    <a
+      class='inline-flex justify-center items-center px-12 py-2 rounded text-sm font-medium text-black bg-white hover:bg-black hover:text-white transition-colors'
+      href='#'
+      >Pedido personalisado
+    </a>
   </div>
 
-  <div class='absolute top-0 bottom-0 z-10 h-full w-full'>
-    <img
-      src='/model-y.webp'
-      alt='Model Y'
-      class='h-full w-full object-cover object-center'
-    />
-  </div>
-</section>
+  <!-- BackGround Media -->
+  <img
+    slot='background-media'
+    src='/model-y.webp'
+    alt='Model Y'
+    class='h-full w-full object-cover object-center'
+  />
+</Section>

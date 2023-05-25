@@ -1,35 +1,28 @@
-<section
-  class='landing-section relative h-screen w-full overflow-hidden text-center bg-black'
-  data-header-color='white'
+---
+import Section from './Section.astro'
+---
+
+<Section
+  title='Disfrute de Tesla'
+  subtitle='Programe una prueba de conducción hoy mismo'
+  color='white'
+  sectionId='model'
 >
-  <div class='relative z-30 flex flex-col h-full'>
-    <header>
-      <h2 class='pt-40 text-[40px] font-medium text-white'>
-        Disfrute de Tesla
-      </h2>
-      <p class='text-sm text-white'>
-        Programe una prueba de conducción hoy mismo
-      </p>
-    </header>
-
-    <!-- Button -->
-    <footer class='flex flex-col flex-grow justify-end pb-20'>
-      <div>
-        <a
-          class='inline-block px-12 py-2 border-[3px] rounded text-sm font-medium text-white border-white bg-white/5 backdrop-blur-sm hover:text-black hover:bg-white transition-colors'
-          href='#'
-          >Prueba de conducción
-        </a>
-      </div>
-    </footer>
+  <!-- Button -->
+  <div slot='footer-button'>
+    <a
+      class='inline-block px-12 py-2 border-[3px] rounded text-sm font-medium text-white border-white bg-white/5 backdrop-blur-sm hover:text-black hover:bg-white transition-colors'
+      href='#'
+      >Prueba de conducción
+    </a>
   </div>
 
-  <div class='absolute top-0 bottom-0 z-10 h-full w-full'>
-    <video
-      class='h-full w-full object-center object-cover'
-      autoplay
-      muted
-      loop
-      src='/video.webm'></video>
-  </div>
-</section>
+  <!-- BackGround Media -->
+  <video
+    slot='background-media'
+    class='h-full w-full object-center object-cover'
+    autoplay
+    muted
+    loop
+    src='/video.webm'></video>
+</Section>
