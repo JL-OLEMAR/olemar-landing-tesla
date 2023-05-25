@@ -11,7 +11,7 @@ import Logo from './Logo.astro'
     <Logo />
   </div>
 
-  <!-- Nav -->
+  <!-- Center Nav -->
   <nav>
     <ul
       class='flex text-sm [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:font-medium [&>li>a]:text-current [&>li>a]:transition-colors [&>li>a]:duration-500'
@@ -25,7 +25,7 @@ import Logo from './Logo.astro'
     </ul>
   </nav>
 
-  <!-- Menú -->
+  <!-- Right Menú -->
   <nav class='flex flex-grow justify-end basis-0'>
     <ul
       class='flex text-sm [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:font-medium [&>li>a]:text-current [&>li>a]:transition-colors [&>li>a]:duration-500'
@@ -36,7 +36,44 @@ import Logo from './Logo.astro'
       <li><a href='#'>Menú</a></li>
     </ul>
   </nav>
+
+  <div
+    id='menu-backdrop'
+    class={`
+    absolute left-0 top-0 -z-10 rounded 
+    translate-x-[var(--left)] translate-y-[var(--top)]    
+    w-[var(--width)] h-[var(--height)]
+    bg-black/5 backdrop-blur-lg
+    transition-all duration-500
+    ease-in-out opacity-0
+  `}
+  >
+  </div>
 </header>
+
+<script>
+  const $listItems = document.querySelectorAll('#landing-header li')
+  const $menuBackDrop = document.querySelector('#menu-backdrop') as HTMLElement
+
+  $listItems.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      const { left, top, width, height } = item.getBoundingClientRect()
+
+      $menuBackDrop.style.setProperty('--left', `${left}px`)
+      $menuBackDrop.style.setProperty('--top', `${top}px`)
+      $menuBackDrop.style.setProperty('--width', `${width}px`)
+      $menuBackDrop.style.setProperty('--height', `${height}px`)
+
+      $menuBackDrop.style.opacity = '1'
+      $menuBackDrop.style.visibility = 'visible'
+    })
+
+    item.addEventListener('mouseleave', () => {
+      $menuBackDrop.style.opacity = '0'
+      $menuBackDrop.style.visibility = 'hidden'
+    })
+  })
+</script>
 
 <script>
   const $headerElem = document.querySelector('#landing-header') as HTMLElement
